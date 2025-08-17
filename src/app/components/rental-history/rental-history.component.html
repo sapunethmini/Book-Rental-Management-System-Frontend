@@ -1,0 +1,38 @@
+<div class="card shadow mb-4">
+  <div class="card-header bg-primary text-white">
+    <h2 class="mb-0">Rental History</h2>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Book</th>
+          <th scope="col">Author</th>
+          <th scope="col">User</th>
+          <th scope="col">Rental Date</th>
+          <th scope="col">Return Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rental of rentals" class="rental-row">
+          <td>
+            <ul class="list-unstyled mb-0">
+              <li *ngFor="let book of rental.books">{{ book.title }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="list-unstyled mb-0">
+              <li *ngFor="let book of rental.books">{{ book.author }}</li>
+            </ul>
+          </td>
+          <td>{{ rental.userDetails }}</td>
+          <td>{{ rental.rentalDate }}</td>
+          <td>{{ rental.returnDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="rentals.length === 0" class="alert alert-info mt-3">
+      No rental history found.
+    </div>
+  </div>
+</div>

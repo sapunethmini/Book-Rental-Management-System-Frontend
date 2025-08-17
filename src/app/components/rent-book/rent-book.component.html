@@ -1,0 +1,72 @@
+<div class="card shadow mb-4">
+  <div class="card-header bg-primary text-white">
+    <h2 class="mb-0">Rent Books</h2>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="rentBooks()">
+      <div class="mb-3">
+        <label for="userDetails" class="form-label">User Details (e.g., Name - Email)</label>
+        <input
+          type="text"
+          id="userDetails"
+          class="form-control"
+          [(ngModel)]="rental.userDetails"
+          name="userDetails"
+          required
+          placeholder="Enter name and email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="rentalDate" class="form-label">Rental Date (YYYY-MM-DD)</label>
+        <input
+          type="date"
+          id="rentalDate"
+          class="form-control"
+          [(ngModel)]="rental.rentalDate"
+          name="rentalDate"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="returnDate" class="form-label">Return Date (YYYY-MM-DD)</label>
+        <input
+          type="date"
+          id="returnDate"
+          class="form-control"
+          [(ngModel)]="rental.returnDate"
+          name="returnDate"
+          required
+        />
+      </div>
+      <h4 class="mt-4">Select Books to Rent</h4>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let book of availableBooks">
+          <div class="card h-100 book-card">
+            <div class="card-body">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [id]="'book-' + book.bookId"
+                  (change)="toggleSelection(book.bookId!)"
+                />
+                <label class="form-check-label" [for]="'book-' + book.bookId">
+                  <h5 class="card-title text-primary">{{ book.title }}</h5>
+                  <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                  <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-success w-100 mt-4"
+        [disabled]="selectedBookIds.length === 0"
+      >
+        Rent Selected Books
+      </button>
+    </form>
+  </div>
+</div>

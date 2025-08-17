@@ -1,0 +1,49 @@
+<div class="card shadow mb-4" style="max-width: 500px; margin: auto;">
+  <div class="card-header bg-success text-white">
+    <h2 class="mb-0">Add New Book</h2>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="addBook()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          [(ngModel)]="book.title"
+          name="title"
+          required
+          placeholder="Enter book title"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input
+          type="text"
+          id="author"
+          class="form-control"
+          [(ngModel)]="book.author"
+          name="author"
+          required
+          placeholder="Enter author name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="genre" class="form-label">Genre</label>
+        <input
+          type="text"
+          id="genre"
+          class="form-control"
+          [(ngModel)]="book.genre"
+          name="genre"
+          required
+          placeholder="Enter genre"
+        />
+      </div>
+      <input type="hidden" [(ngModel)]="book.available" name="available" />
+      <button type="submit" class="btn btn-primary w-100" [disabled]="!book.title || !book.author || !book.genre">
+        Add Book
+      </button>
+    </form>
+  </div>
+</div>
